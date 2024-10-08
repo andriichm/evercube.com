@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Покупка Immortal - EVERCUBE</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        header {
+            background-color: #34495e;
+            padding: 20px;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+        .container {
+            margin: 50px auto;
+            padding: 20px;
+            max-width: 600px;
+        }
+        .price {
+            font-size: 1.5em;
+            color: #e74c3c;
+        }
+        .buy-button {
+            background-color: #e67e22;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            font-size: 1.2em;
+        }
+        .buy-button:hover {
+            background-color: #d35400;
+        }
+        footer {
+            background-color: #34495e;
+            padding: 10px;
+            text-align: center;
+            color: #ecf0f1;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Покупка Immortal</h1>
+    </header>
+
+    <div class="container">
+        <h2>Immortal</h2>
+        <p class="price">Цена: 5999 руб</p>
+        <p>Вы уверены, что хотите купить эту привилегию?</p>
+        <a href="#" class="buy-button">Подтвердить покупку</a>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 EVERCUBE. Все права защищены.</p>
+    </footer>
+
+</body>
+</html>
