@@ -1,0 +1,38 @@
+<?php
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $paymentMethod = $_POST['payment-method'];
+    
+    // Проверка метода оплаты
+    switch ($paymentMethod) {
+        case 'credit-card':
+            $cardNumber = $_POST['card-number'];
+            $expiryDate = $_POST['expiry-date'];
+            $cvv = $_POST['cvv'];
+            // Здесь добавьте код для обработки оплаты через кредитную карту
+            // Например, интеграция с Stripe или другой платёжной системой
+            break;
+
+        case 'paypal':
+            // Здесь добавьте код для перенаправления на PayPal для оплаты
+            break;
+
+        case 'bank-transfer':
+            // Здесь добавьте инструкции по банковскому переводу и обработку
+            break;
+
+        case 'crypto':
+            // Здесь добавьте инструкции по оплате в криптовалюте
+            break;
+
+        default:
+            // Обработка неверного метода
+            echo 'Неверный метод оплаты.';
+            exit;
+    }
+
+    // Если оплата прошла успешно
+    echo 'Оплата прошла успешно! Спасибо за покупку.';
+} else {
+    echo 'Некорректный запрос.';
+}
+?>
