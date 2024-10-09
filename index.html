@@ -1,205 +1,242 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EVERCUBE - Покупка привилегий</title>
+    <title>Магазин привилегий</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #2c3e50;
-            color: #ecf0f1;
+            font-family: 'Roboto', sans-serif;
+            background-color: #f4f4f4;
             margin: 0;
             padding: 0;
         }
 
-        header {
-            background-color: #34495e;
-            padding: 20px;
-            text-align: center;
-        }
-
-        header h1 {
-            margin: 0;
-            font-size: 2.5em;
-        }
-
         .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 20px;
             max-width: 1200px;
             margin: 0 auto;
-            padding: 20px;
-            text-align: center;
-            display: flex;
-            flex-wrap: wrap; /* Обеспечивает перенос карточек на новую строку */
-            justify-content: center; /* Центрирует карточки по горизонтали */
         }
 
         .privilege-card {
-            background-color: #1abc9c;
-            border-radius: 10px;
-            padding: 20px;
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
             margin: 15px;
-            display: flex;
-            flex-direction: column; /* Позволяет располагать элементы вертикально */
-            align-items: center; /* Центрирует содержимое */
-            width: 280px;
-            height: 450px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-            transition: transform 0.3s ease, box-shadow 0.3s ease; /* Плавные эффекты */
-        }
-
-        .privilege-card img {
+            transition: transform 0.3s ease;
             width: 250px;
-            height: 250px;
-            object-fit: cover; /* Заполнение изображения */
-            border-radius: 10px;
-            margin-bottom: 15px; /* Отступ от изображения до заголовка */
+            position: relative;
         }
 
         .privilege-card:hover {
-            transform: scale(1.05); /* Плавное увеличение карточки при наведении */
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3); /* Увеличенная тень при наведении */
+            transform: scale(1.05);
         }
 
-        .privilege-card h2 {
-            font-size: 1.5em;
-            margin-bottom: 10px;
+        .privilege-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
         }
 
-        .privilege-card p {
+        .privilege-info {
+            padding: 15px;
+            text-align: center;
+        }
+
+        .privilege-info h3 {
+            margin: 10px 0;
             font-size: 1.2em;
+            color: #333;
         }
 
-        .price {
-            font-size: 1.5em;
-            color: #e74c3c;
+        .price-tag {
+            background-color: orange;
+            color: white;
+            font-weight: bold;
+            padding: 5px 10px;
+            border-radius: 5px;
+            display: inline-block;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+
+        .discount {
+            background-color: red;
+            color: white;
+            font-size: 0.8em;
+            font-weight: bold;
+            padding: 3px 7px;
+            border-radius: 5px;
+            position: absolute;
+            top: 10px;
+            left: 10px;
         }
 
         .buy-button {
-            background-color: #e67e22;
-            color: #fff;
-            padding: 10px 20px;
+            background-color: orange;
             border: none;
-            border-radius: 5px;
+            color: white;
+            font-size: 1em;
+            font-weight: bold;
+            padding: 10px 0;
+            margin-top: 10px;
+            width: 100%;
+            border-radius: 0 0 15px 15px;
             cursor: pointer;
-            text-decoration: none;
-            font-size: 1.2em;
-            transition: background-color 0.3s ease; /* Плавный переход для кнопки */
+            transition: background-color 0.3s ease;
         }
 
         .buy-button:hover {
-            background-color: #d35400; /* Изменение цвета кнопки при наведении */
+            background-color: darkorange;
         }
 
-        footer {
-            background-color: #34495e;
-            padding: 10px;
+        /* Ползунок */
+        .slider-container {
+            margin: 20px 0;
             text-align: center;
-            color: #ecf0f1;
-            position: fixed;
-            bottom: 0;
+        }
+
+        .slider {
             width: 100%;
+            margin: 10px 0;
         }
 
-        .support {
-            background-color: #3498db;
-            padding: 20px;
-            margin: 30px 0;
-            border-radius: 10px;
-            text-align: center;
-        }
-
-        .support h2 {
-            font-size: 2em;
-        }
-
-        .support p {
+        .slider-value {
             font-size: 1.2em;
+            color: #333;
         }
     </style>
 </head>
+
 <body>
 
-    <header>
-        <h1>EVERCUBE - Магазин привилегий</h1>
-    </header>
-
     <div class="container">
-        <!-- Привилегии -->
-        <div class="privilege-card">
-            <h2>Immortal</h2>
-            <img src="/path/to/image1.webp" alt="Immortal Image"> <!-- Замените на реальный путь к изображению -->
-            <p class="price">Цена: <span id="immortal-price">5999</span> руб</p>
-            <a href="buy_immortal.html" class="buy-button">Купить Immortal</a>
+        <!-- Ползунок для выбора суммы рублей -->
+        <div class="slider-container">
+            <label for="money-slider">Выберите сумму рублей:</label><br>
+            <input type="range" id="money-slider" class="slider" min="1" max="10000" value="5000" step="100">
+            <div class="slider-value">Сумма: <span id="slider-value">5000</span>₽</div>
         </div>
 
+        <!-- Привилегия Immortal -->
         <div class="privilege-card">
-            <h2>Vlastelin</h2>
-            <img src="/path/to/image2.webp" alt="Vlastelin Image"> <!-- Замените на реальный путь к изображению -->
-            <p class="price">Цена: <span id="vlastelin-price">2999</span> руб</p>
-            <a href="buy_vlastelin.html" class="buy-button">Купить Vlastelin</a>
+            <div class="discount">СКИДКА</div>
+            <img src="images/immortal.png" alt="Immortal">
+            <div class="privilege-info">
+                <h3>Immortal</h3>
+                <span class="price-tag">5999₽</span>
+                <button class="buy-button">Купить</button>
+            </div>
         </div>
 
+        <!-- Привилегия Vlastelin -->
         <div class="privilege-card">
-            <h2>Harly</h2>
-            <img src="/path/to/image3.webp" alt="Harly Image"> <!-- Замените на реальный путь к изображению -->
-            <p class="price">Цена: <span id="harly-price">1599</span> руб</p>
-            <a href="buy_harly.html" class="buy-button">Купить Harly</a>
+            <div class="discount">СКИДКА</div>
+            <img src="images/vlastelin.png" alt="Vlastelin">
+            <div class="privilege-info">
+                <h3>Vlastelin</h3>
+                <span class="price-tag">2999₽</span>
+                <button class="buy-button">Купить</button>
+            </div>
         </div>
 
+        <!-- Привилегия Harly -->
         <div class="privilege-card">
-            <h2>Luxe</h2>
-            <img src="/path/to/image4.webp" alt="Luxe Image"> <!-- Замените на реальный путь к изображению -->
-            <p class="price">Цена: <span id="luxe-price">1199</span> руб</p>
-            <a href="buy_luxe.html" class="buy-button">Купить Luxe</a>
+            <img src="images/harly.png" alt="Harly">
+            <div class="privilege-info">
+                <h3>Harly</h3>
+                <span class="price-tag">1599₽</span>
+                <button class="buy-button">Купить</button>
+            </div>
         </div>
 
+        <!-- Привилегия Luxe -->
         <div class="privilege-card">
-            <h2>Staff</h2>
-            <img src="/path/to/image5.webp" alt="Staff Image"> <!-- Замените на реальный путь к изображению -->
-            <p class="price">Цена: <span id="staff-price">699</span> руб</p>
-            <a href="buy_staff.html" class="buy-button">Купить Staff</a>
+            <img src="images/luxe.png" alt="Luxe">
+            <div class="privilege-info">
+                <h3>Luxe</h3>
+                <span class="price-tag">1199₽</span>
+                <button class="buy-button">Купить</button>
+            </div>
         </div>
 
+        <!-- Привилегия Staff -->
         <div class="privilege-card">
-            <h2>Imperator</h2>
-            <img src="/path/to/your/image.webp" alt="Imperator Image"> <!-- Картинка Императора -->
-            <p class="price">Цена: <span id="imperator-price">499</span> руб</p>
-            <a href="buy_imperator.html" class="buy-button">Купить Imperator</a>
+            <img src="images/staff.png" alt="Staff">
+            <div class="privilege-info">
+                <h3>Staff</h3>
+                <span class="price-tag">699₽</span>
+                <button class="buy-button">Купить</button>
+            </div>
         </div>
 
+        <!-- Привилегия Imperator -->
         <div class="privilege-card">
-            <h2>Gladiator</h2>
-            <img src="/path/to/image7.webp" alt="Gladiator Image"> <!-- Замените на реальный путь к изображению -->
-            <p class="price">Цена: <span id="gladiator-price">249</span> руб</p>
-            <a href="buy_gladiator.html" class="buy-button">Купить Gladiator</a>
+            <img src="images/imperator.png" alt="Imperator">
+            <div class="privilege-info">
+                <h3>Imperator</h3>
+                <span class="price-tag">499₽</span>
+                <button class="buy-button">Купить</button>
+            </div>
         </div>
 
+        <!-- Привилегия Gladiator -->
         <div class="privilege-card">
-            <h2>Master</h2>
-            <img src="/path/to/image8.webp" alt="Master Image"> <!-- Замените на реальный путь к изображению -->
-            <p class="price">Цена: <span id="master-price">99</span> руб</p>
-            <a href="buy_master.html" class="buy-button">Купить Master</a>
+            <img src="images/gladiator.png" alt="Gladiator">
+            <div class="privilege-info">
+                <h3>Gladiator</h3>
+                <span class="price-tag">249₽</span>
+                <button class="buy-button">Купить</button>
+            </div>
         </div>
 
+        <!-- Привилегия Master -->
         <div class="privilege-card">
-            <h2>King</h2>
-            <img src="/path/to/image9.webp" alt="King Image"> <!-- Замените на реальный путь к изображению -->
-            <p class="price">Цена: <span id="king-price">69</span> руб</p>
-            <a href="buy_king.html" class="buy-button">Купить King</a>
+            <img src="images/master.png" alt="Master">
+            <div class="privilege-info">
+                <h3>Master</h3>
+                <span class="price-tag">99₽</span>
+                <button class="buy-button">Купить</button>
+            </div>
         </div>
 
+        <!-- Привилегия King -->
         <div class="privilege-card">
-            <h2>Titan</h2>
-            <img src="/path/to/image10.webp" alt="Titan Image"> <!-- Замените на реальный путь к изображению -->
-            <p class="price">Цена: <span id="titan-price">35</span> руб</p> <!-- Устанавливаем цену Титана в 35 руб -->
-            <a href="buy_titan.html" class="buy-button">Купить Titan</a>
+            <img src="images/king.png" alt="King">
+            <div class="privilege-info">
+                <h3>King</h3>
+                <span class="price-tag">69₽</span>
+                <button class="buy-button">Купить</button>
+            </div>
+        </div>
+
+        <!-- Привилегия Titan -->
+        <div class="privilege-card">
+            <img src="images/titan.png" alt="Titan">
+            <div class="privilege-info">
+                <h3>Titan</h3>
+                <span class="price-tag">35₽</span>
+                <button class="buy-button">Купить</button>
+            </div>
         </div>
     </div>
 
-    <footer>
-        <p>&copy; 2024 EVERCUBE</p>
-    </footer>
+    <script>
+        const slider = document.getElementById('money-slider');
+        const sliderValue = document.getElementById('slider-value');
+
+        slider.addEventListener('input', function () {
+            sliderValue.textContent = this.value; // Обновление текста с выбранной суммой
+        });
+    </script>
 
 </body>
+
 </html>
