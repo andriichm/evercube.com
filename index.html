@@ -29,6 +29,9 @@
             margin: 0 auto;
             padding: 20px;
             text-align: center;
+            display: flex;
+            flex-wrap: wrap; /* Обеспечивает перенос карточек на новую строку */
+            justify-content: center; /* Центрирует карточки по горизонтали */
         }
 
         .privilege-card {
@@ -36,22 +39,26 @@
             border-radius: 10px;
             padding: 20px;
             margin: 15px;
-            display: inline-block;
-            width: 280px; /* Увеличиваем ширину карточки */
-            height: 450px; /* Увеличиваем высоту карточки */
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
+            display: flex;
+            flex-direction: column; /* Позволяет располагать элементы вертикально */
+            align-items: center; /* Центрирует содержимое */
+            width: 280px;
+            height: 450px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease; /* Плавные эффекты */
         }
 
         .privilege-card img {
-            width: 250px; /* Задаем квадратный размер */
-            height: 250px; /* Изображение квадратное */
-            object-fit: cover; /* Обеспечивает, чтобы картинка равномерно заполнила карточку */
+            width: 250px;
+            height: 250px;
+            object-fit: cover; /* Заполнение изображения */
             border-radius: 10px;
+            margin-bottom: 15px; /* Отступ от изображения до заголовка */
         }
 
         .privilege-card:hover {
             transform: scale(1.05); /* Плавное увеличение карточки при наведении */
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3); /* Увеличенная тень при наведении */
         }
 
         .privilege-card h2 {
@@ -77,10 +84,11 @@
             cursor: pointer;
             text-decoration: none;
             font-size: 1.2em;
+            transition: background-color 0.3s ease; /* Плавный переход для кнопки */
         }
 
         .buy-button:hover {
-            background-color: #d35400;
+            background-color: #d35400; /* Изменение цвета кнопки при наведении */
         }
 
         footer {
@@ -184,7 +192,7 @@
         <div class="privilege-card">
             <h2>Titan</h2>
             <img src="/path/to/image10.webp" alt="Titan Image"> <!-- Замените на реальный путь к изображению -->
-            <p class="price">Цена: <span id="titan-price">199</span> руб</p>
+            <p class="price">Цена: <span id="titan-price">35</span> руб</p> <!-- Устанавливаем цену Титана в 35 руб -->
             <a href="buy_titan.html" class="buy-button">Купить Titan</a>
         </div>
     </div>
