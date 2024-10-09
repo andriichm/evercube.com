@@ -31,6 +31,7 @@
             text-align: center;
         }
 
+        /* Общий стиль для карточек привилегий */
         .privilege-card {
             background-color: #1abc9c;
             border-radius: 10px;
@@ -39,6 +40,11 @@
             display: inline-block;
             width: 250px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease; /* Плавное увеличение при наведении */
+        }
+
+        .privilege-card:hover {
+            transform: scale(1.1); /* Увеличение карточки при наведении */
         }
 
         .privilege-card h2 {
@@ -80,21 +86,17 @@
             width: 100%;
         }
 
-        .support {
-            background-color: #3498db;
-            padding: 20px;
-            margin: 30px 0;
+        /* Стиль для изображения Императора */
+        .imperator-image {
+            width: 100%;
             border-radius: 10px;
-            text-align: center;
+            transition: transform 0.3s ease; /* Плавное увеличение */
         }
 
-        .support h2 {
-            font-size: 2em;
+        .imperator-image:hover {
+            transform: scale(1.1); /* Увеличение при наведении */
         }
 
-        .support p {
-            font-size: 1.2em;
-        }
     </style>
 </head>
 <body>
@@ -108,72 +110,58 @@
         <div class="privilege-card">
             <h2>Immortal</h2>
             <p class="price">Цена: <span id="immortal-price">5999</span> руб</p>
-            <a href="buy_immortal.html" class="buy-button">Купить Immortal</a>
+            <a href="buy_immortal.html" class="buy-button">Купить Immortal</a> <!-- Ссылка на страницу покупки -->
         </div>
 
         <div class="privilege-card">
             <h2>Vlastelin</h2>
             <p class="price">Цена: <span id="vlastelin-price">2999</span> руб</p>
-            <a href="buy_vlastelin.html" class="buy-button">Купить Vlastelin</a>
+            <a href="buy_vlastelin.html" class="buy-button">Купить Vlastelin</a> <!-- Ссылка на страницу покупки -->
         </div>
 
         <div class="privilege-card">
             <h2>Harly</h2>
             <p class="price">Цена: <span id="harly-price">1599</span> руб</p>
-            <a href="buy_harly.html" class="buy-button">Купить Harly</a>
+            <a href="buy_harly.html" class="buy-button">Купить Harly</a> <!-- Ссылка на страницу покупки -->
         </div>
 
         <div class="privilege-card">
             <h2>Luxe</h2>
             <p class="price">Цена: <span id="luxe-price">1199</span> руб</p>
-            <a href="buy_luxe.html" class="buy-button">Купить Luxe</a>
+            <a href="buy_luxe.html" class="buy-button">Купить Luxe</a> <!-- Ссылка на страницу покупки -->
         </div>
 
         <div class="privilege-card">
             <h2>Staff</h2>
             <p class="price">Цена: <span id="staff-price">699</span> руб</p>
-            <a href="buy_staff.html" class="buy-button">Купить Staff</a>
+            <a href="buy_staff.html" class="buy-button">Купить Staff</a> <!-- Ссылка на страницу покупки -->
         </div>
 
-        <div class="container">
-        <!-- Привилегия Император с увеличением изображения -->
+        <!-- Привилегия Император с изображением -->
         <div class="privilege-card">
-            <h2>Император</h2>
-            <img src="/mnt/data/d84ad409-ec12-4e44-be9c-8e9f1062d432.webp" alt="Imperator Privilege Image">
-            <p class="price">Цена: 499 руб</p>
-            <a href="buy_imperator.html" class="buy-button">Купить Император</a>
+            <h2>Imperator</h2>
+            <img src="путь_к_изображению_императора.webp" alt="Imperator" class="imperator-image">
+            <p class="price">Цена: <span id="imperator-price">499</span> руб</p>
+            <a href="buy_imperator.html" class="buy-button">Купить Imperator</a> <!-- Ссылка на страницу покупки -->
         </div>
 
         <div class="privilege-card">
             <h2>Gladiator</h2>
             <p class="price">Цена: <span id="gladiator-price">249</span> руб</p>
-            <a href="buy_gladiator.html" class="buy-button">Купить Gladiator</a>
+            <a href="buy_gladiator.html" class="buy-button">Купить Gladiator</a> <!-- Ссылка на страницу покупки -->
         </div>
 
         <div class="privilege-card">
             <h2>Master</h2>
             <p class="price">Цена: <span id="master-price">99</span> руб</p>
-            <a href="buy_master.html" class="buy-button">Купить Master</a>
+            <a href="buy_master.html" class="buy-button">Купить Master</a> <!-- Ссылка на страницу покупки -->
         </div>
 
         <div class="privilege-card">
             <h2>King</h2>
             <p class="price">Цена: <span id="king-price">69</span> руб</p>
-            <a href="buy_king.html" class="buy-button">Купить King</a>
+            <a href="buy_king.html" class="buy-button">Купить King</a> <!-- Ссылка на страницу покупки -->
         </div>
-
-        <div class="privilege-card">
-            <h2>Titan</h2>
-            <p class="price">Цена: <span id="titan-price">35</span> руб</p>
-            <a href="buy_titan.html" class="buy-button">Купить Titan</a> <!-- Ссылка на страницу покупки -->
-        </div>
-    </div>
-
-    <!-- Раздел Поддержка -->
-    <div class="support">
-        <h2>Поддержка</h2>
-        <p>Если у вас возникли вопросы или проблемы с покупкой привилегий, пожалуйста, свяжитесь с нами по электронной почте: <a href="mailto:support@evercube.com">support@evercube.com</a></p>
-        <p>Мы ответим вам в течение 24 часов.</p>
     </div>
 
     <footer>
