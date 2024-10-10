@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ru">
-
 <head>
+    <link rel="stylesheet" href="style.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Магазин привилегий</title>
@@ -12,6 +12,36 @@
             background-color: #f4f4f4;
             margin: 0;
             padding: 0;
+            color: white;
+        }
+
+        .header {
+            padding: 50px;
+            text-align: center;
+            font-size: 7em;
+            font-weight: bold;
+        }
+
+        .nav {
+            display: flex;
+            justify-content: center;
+            background-color: white;
+            border-radius: 20px;
+            padding: 10px 0;
+        }
+
+        .nav a {
+            color: #333;
+            margin: 0 15px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+            padding: 10px 15px;
+            border-radius: 5px;
+        }
+
+        .nav a:hover {
+            background-color: #e0b800;
         }
 
         .container {
@@ -27,11 +57,13 @@
             background-color: white;
             border-radius: 15px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
             margin: 15px;
-            transition: transform 0.3s ease;
+            transition: transform 0.3s ease-in-out;
             width: 250px;
             position: relative;
+            display: flex;
+            flex-direction: column;
+            min-height: 300px; 
         }
 
         .privilege-card:hover {
@@ -42,11 +74,13 @@
             width: 100%;
             height: 200px;
             object-fit: cover;
+            border-radius: 15px 15px 0 0;
         }
 
         .privilege-info {
             padding: 15px;
             text-align: center;
+            flex-grow: 1;
         }
 
         .privilege-info h3 {
@@ -67,83 +101,164 @@
             right: 10px;
         }
 
-        .discount {
-            background-color: red;
-            color: white;
-            font-size: 0.8em;
-            font-weight: bold;
-            padding: 3px 7px;
-            border-radius: 5px;
-            position: absolute;
-            top: 10px;
-            left: 10px;
-        }
-
         .buy-button {
-            background-color: orange;
+            background-color: #ffcc00;
             border: none;
-            color: white;
-            font-size: 1em;
+            color: #333;
+            font-size: 0.9em;
             font-weight: bold;
-            padding: 10px 0;
-            margin-top: 10px;
-            width: 100%;
-            border-radius: 0 0 15px 15px;
+            padding: 8px 0;
+            width: 80%;
+            border-radius: 15px;
             cursor: pointer;
             transition: background-color 0.3s ease;
+            margin: 10px auto 0;
         }
 
         .buy-button:hover {
-            background-color: darkorange;
+            background-color: #e0b800;
         }
 
-        /* Ползунок */
         .slider-container {
-            margin: 20px 0;
-            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 40px 0;
+            color: white;
         }
 
         .slider {
+            -webkit-appearance: none;
             width: 100%;
-            margin: 10px 0;
+            height: 20px;
+            border-radius: 10px;
+            background-color: #666; 
+            outline: none;
+            opacity: 0.9;
+            transition: opacity .2s;
+            margin-top: 20px;
         }
 
-        .slider-value {
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: #ffcc00;
+            border: 2px solid #333;
+            cursor: pointer;
+        }
+
+        .slider::-moz-range-thumb {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: #ffcc00;
+            border: 2px solid #333;
+            cursor: pointer;
+        }
+
+        .slider:hover {
+            opacity: 1;
+        }
+
+        .cube-input {
+            width: 150px;
             font-size: 1.2em;
+            padding: 10px;
+            margin-bottom: 15px;
+            text-align: center;
+            border-radius: 5px;
+            border: 2px solid #ccc;
+            background-color: white;
+            color: black;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .cube-input:focus {
+            outline: none;
+            box-shadow: 0 0 10px rgba(255, 204, 0, 0.7);
+            transform: translateY(-2px);
+        }
+
+        .buy-coins {
+            background-color: #555;
+            border: none;
+            color: white;
+            padding: 10px 15px;
+            margin-top: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .buy-coins:hover {
+            background-color: #444;
+        }
+
+        .value-display {
+            font-size: 1.2em;
+            margin-top: 10px;
             color: #333;
+        }
+
+        .footer {
+            width: 100%;
+            text-align: center;
+            padding: 20px;
+            background-color: white;
+        }
+
+        .footer a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+        }
+
+        .cost-display {
+            margin-top: 10px;
+        }
+
+        .cost-display p {
+            font-size: 1.2em;
+            margin: 5px 0;
+            color: white;
         }
     </style>
 </head>
-
 <body>
 
-    <div class="container">
-        <!-- Ползунок для выбора суммы рублей -->
-        <div class="slider-container">
-            <label for="money-slider">Выберите сумму рублей:</label><br>
-            <input type="range" id="money-slider" class="slider" min="1" max="10000" value="5000" step="100">
-            <div class="slider-value">Сумма: <span id="slider-value">5000</span>₽</div>
-        </div>
+    <div class="header">EVERCUBE </div>
 
+    <div class="nav">
+        <a href="#">Главная</a>
+        <a href="#">Магазин</a>
+        <a href="#">Поддержка</a>
+        <a href="#">Правила</a>
+        <a href="#">Описание привилегий</a>
+        <a href="#">Форум</a>
+    </div>
+
+    <div class="container">
         <!-- Привилегия Immortal -->
         <div class="privilege-card">
-            <div class="discount">СКИДКА</div>
             <img src="images/immortal.png" alt="Immortal">
             <div class="privilege-info">
                 <h3>Immortal</h3>
                 <span class="price-tag">5999₽</span>
-                <button class="buy-button">Купить</button>
+                <button class="buy-button" onclick="goToPayment('Immortal', '5999₽')">Купить</button>
             </div>
         </div>
 
         <!-- Привилегия Vlastelin -->
         <div class="privilege-card">
-            <div class="discount">СКИДКА</div>
             <img src="images/vlastelin.png" alt="Vlastelin">
             <div class="privilege-info">
                 <h3>Vlastelin</h3>
                 <span class="price-tag">2999₽</span>
-                <button class="buy-button">Купить</button>
+                <button class="buy-button" onclick="goToPayment('Vlastelin', '2999₽')">Купить</button>
             </div>
         </div>
 
@@ -153,7 +268,7 @@
             <div class="privilege-info">
                 <h3>Harly</h3>
                 <span class="price-tag">1599₽</span>
-                <button class="buy-button">Купить</button>
+                <button class="buy-button" onclick="goToPayment('Harly', '1599₽')">Купить</button>
             </div>
         </div>
 
@@ -163,7 +278,7 @@
             <div class="privilege-info">
                 <h3>Luxe</h3>
                 <span class="price-tag">1199₽</span>
-                <button class="buy-button">Купить</button>
+                <button class="buy-button" onclick="goToPayment('Luxe', '1199₽')">Купить</button>
             </div>
         </div>
 
@@ -173,70 +288,43 @@
             <div class="privilege-info">
                 <h3>Staff</h3>
                 <span class="price-tag">699₽</span>
-                <button class="buy-button">Купить</button>
-            </div>
-        </div>
-
-        <!-- Привилегия Imperator -->
-        <div class="privilege-card">
-            <img src="images/imperator.png" alt="Imperator">
-            <div class="privilege-info">
-                <h3>Imperator</h3>
-                <span class="price-tag">499₽</span>
-                <button class="buy-button">Купить</button>
-            </div>
-        </div>
-
-        <!-- Привилегия Gladiator -->
-        <div class="privilege-card">
-            <img src="images/gladiator.png" alt="Gladiator">
-            <div class="privilege-info">
-                <h3>Gladiator</h3>
-                <span class="price-tag">249₽</span>
-                <button class="buy-button">Купить</button>
-            </div>
-        </div>
-
-        <!-- Привилегия Master -->
-        <div class="privilege-card">
-            <img src="images/master.png" alt="Master">
-            <div class="privilege-info">
-                <h3>Master</h3>
-                <span class="price-tag">99₽</span>
-                <button class="buy-button">Купить</button>
-            </div>
-        </div>
-
-        <!-- Привилегия King -->
-        <div class="privilege-card">
-            <img src="images/king.png" alt="King">
-            <div class="privilege-info">
-                <h3>King</h3>
-                <span class="price-tag">69₽</span>
-                <button class="buy-button">Купить</button>
-            </div>
-        </div>
-
-        <!-- Привилегия Titan -->
-        <div class="privilege-card">
-            <img src="images/titan.png" alt="Titan">
-            <div class="privilege-info">
-                <h3>Titan</h3>
-                <span class="price-tag">35₽</span>
-                <button class="buy-button">Купить</button>
+                <button class="buy-button" onclick="goToPayment('Staff', '699₽')">Купить</button>
             </div>
         </div>
     </div>
 
+    <div class="slider-container">
+        <h2>Кубики</h2>
+        <input type="range" class="slider" id="cubeRange" min="0" max="1000" value="0" onchange="updateCubeValue(this.value)">
+        <input type="text" class="cube-input" id="cubeInput" placeholder="Кубики" readonly>
+        <button class="buy-coins" onclick="buyCubes()">Купить за 1 рубль (20 кубиков)</button>
+        <div class="cost-display">
+            <p id="costDisplay">Куплено кубиков: 0</p>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>© 2024 EverCube. Все права защищены.</p>
+        <a href="#">Политика конфиденциальности</a>
+    </div>
+
     <script>
-        const slider = document.getElementById('money-slider');
-        const sliderValue = document.getElementById('slider-value');
+        let totalCubes = 0;
 
-        slider.addEventListener('input', function () {
-            sliderValue.textContent = this.value; // Обновление текста с выбранной суммой
-        });
+        function updateCubeValue(value) {
+            document.getElementById('cubeInput').value = value;
+        }
+
+        function buyCubes() {
+            totalCubes += 20; // Каждая покупка дает 20 кубиков
+            document.getElementById('costDisplay').innerText = 'Куплено кубиков: ' + totalCubes;
+            document.getElementById('cubeInput').value = totalCubes;
+        }
+
+        function goToPayment(privilegeName, price) {
+            alert(`Вы выбрали ${privilegeName} за ${price}.`);
+            // Здесь должна быть логика перехода на страницу оплаты
+        }
     </script>
-
 </body>
-
 </html>
